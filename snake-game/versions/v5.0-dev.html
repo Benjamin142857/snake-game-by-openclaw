@@ -53,7 +53,7 @@
         .modal {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
             background: rgba(0,0,0,0.95); padding: 25px; border-radius: 15px; text-align: center;
-            display: none; border: 2px solid #e94560; z-index: 1000; min-width: 320px;
+            display: none; border: 2px solid #e94560; z-index: 100; min-width: 320px;
         }
         .modal h2 { color: #e94560; margin-bottom: 15px; font-size: 1.3rem; }
         .shop-item {
@@ -817,10 +817,6 @@
             if (mode) currentMode = mode;
             document.getElementById('startModal').style.display = 'none';
             document.getElementById('modeModal').style.display = 'none';
-            document.getElementById('shopModal').style.display = 'none';
-            document.getElementById('skinModal').style.display = 'none';
-            document.getElementById('achievementModal').style.display = 'none';
-            document.getElementById('statsModal').style.display = 'none';
             initGame();
             nextDirection = { x: 1, y: 0 };
             if (gameLoop) clearInterval(gameLoop);
@@ -855,7 +851,6 @@
         }
         
         function openModeModal() {
-            document.getElementById('startModal').style.display = 'none';
             const modeDiv = document.getElementById('modeList');
             modeDiv.innerHTML = Object.entries(gameModes).map(([key, mode]) => `
                 <button class="btn mode-btn ${currentMode === key ? 'selected' : ''}" onclick="startGame('${key}')">
@@ -867,7 +862,6 @@
         }
         
         function openShop() {
-            document.getElementById('startModal').style.display = 'none';
             document.getElementById('shopCoins').textContent = coins;
             const shopDiv = document.getElementById('shopItems');
             shopDiv.innerHTML = shopItemsData.map(item => `
@@ -906,7 +900,6 @@
         }
         
         function openSkinModal() {
-            document.getElementById('startModal').style.display = 'none';
             const skinDiv = document.getElementById('skinList');
             skinDiv.innerHTML = skins.map(skin => `
                 <div class="skin-preview ${selectedSkin === skin.id ? 'selected' : ''}" 
@@ -945,7 +938,6 @@
         }
         
         function openAchievementModal() {
-            document.getElementById('startModal').style.display = 'none';
             const achDiv = document.getElementById('achievementList');
             achDiv.innerHTML = achievements.map(ach => `
                 <div class="achievement ${ach.unlocked ? 'unlocked' : 'locked'}">
@@ -961,7 +953,6 @@
         }
         
         function openStatsModal() {
-            document.getElementById('startModal').style.display = 'none';
             const statsDiv = document.getElementById('statsList');
             statsDiv.innerHTML = `
                 <div class="stat-item"><span>游戏次数</span><span>${stats.gamesPlayed}</span></div>
